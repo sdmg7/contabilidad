@@ -1,0 +1,124 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+<!--
+	This is a jQuery Tools standalone demo. Feel free to copy/paste.
+
+	http://flowplayer.org/tools/demos/
+
+	Do *not* reference CSS files and images from flowplayer.org when in production
+
+	Enjoy!
+-->
+
+<head>
+	<title>jQuery Tools standalone demo</title>
+ <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<script language="javascript1.2" src="../lib/zpmenu/utils/utils.js"></script>
+<script language="javascript1.2" src="../lib/zpmenu/src/menu.js"></script>
+
+<script language="javascript" src= "../lib/tools/cookies.js" ></script>
+<script language='javascript' src="../lib/tools/omnisoftTools.js"></script>
+<script language="javascript" src= "../lib/aw/lib/aw.js" ></script>
+<link href="../lib/styles/omnisoft.css" rel="stylesheet" type="text/css">
+<link href="../lib/tools/omnisoftValidar.css" rel="stylesheet" type="text/css">
+<script language='javascript' src="../lib/tools/omnisoftValidar.js"></script>
+<script language="javascript" src="../lib/mask/event-listener.js"></script>
+<script language="javascript" src="../lib/mask/masked-input.js"></script>
+<script language="javascript" src="../lib/mask/enter-as-tab.js"></script>
+<script language="javascript" src="../lib/mask/auto-tab.js"></script>
+<script language='javascript' src="../lib/grid/omnisoftDB.js"></script>
+<script language='javascript' src="../lib/combo/omnisoftComboBox.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../lib/jscalendar/calendar-blue2.css" title="win2k-cold-1" />
+  <script type="text/javascript" src="../lib/jscalendar/calendar.js"></script>
+  <script type="text/javascript" src="../lib/jscalendar/lang/calendar-en.js"></script>
+  <script type="text/javascript" src="../lib/jscalendar/calendar-setup.js"></script>
+<script type="text/javascript" src="../lib/tools/jquery.tools.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/tools/tooltip-generic.css"/>
+
+</head>
+
+<body>
+
+
+
+
+<form id="PaginaDatos"   id="PaginaDatos"  name="PaginaDatos" action="#">
+
+	<h3>Registration Form</h3>
+
+
+		<!-- username -->
+		<label for="username">Username</label>
+		<input id="username" title="Must be at least 8 characters."/><br />
+
+		<!-- password -->
+		<label for="password">Password</label>
+		<input id="password" type="password" title="Try to make it hard to guess." /><br />
+
+		<!-- email -->
+		<label for="email">Email</label>
+		<input id="email" title="We won't send you any marketing material." /><br />
+
+		<!-- message -->
+		<label for="body">Message</label>
+		<textarea id="body" title="What's on your mind?"></textarea><br />
+
+		<!-- message -->
+		<label for="where">Select one</label>
+		<select id="where" title="Select one of these options">
+			<option>-- first option --</option>
+			<option>-- second option --</option>
+			<option>-- third option --</option>
+		</select>
+		<br />
+
+	<!-- email -->
+	<label>
+		I accept the terms and conditions
+		<input type="checkbox" id="check" title="Required to proceed" />
+	</label>
+
+	<p>
+		<button type="button" title="This button won't do anything">Proceed</button>
+	</p>
+
+</form>
+
+<!-- javascript coding -->
+<script>
+$(function() {
+
+
+
+// select all desired input fields and attach tooltips to them
+$("#PaginaDatos :input").tooltip({
+
+	// place tooltip on the right edge
+	position: "top center",
+
+	// a little tweaking of the position
+	offset: [-2, 50],
+
+	// use the built-in fadeIn/fadeOut effect
+	effect: "fade",
+
+	// custom opacity setting
+	opacity: 0.9
+
+});
+});
+     document.PaginaDatos.email.setAttribute('title','Por favor ingrese letras mayusculas (A..Z), letras minusculas (a..z) o numeros luego de una letra (0..9)');
+     document.PaginaDatos.email.getTip().show();
+
+</script>
+
+
+
+</body>
+
+</html>
+

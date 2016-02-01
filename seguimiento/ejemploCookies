@@ -1,0 +1,9 @@
+<script language="javascript" src= "lib/tools/cookies.js" ></script>
+
+<script>
+//eraseCookie('nombre_usr');
+//eraseCookie('apellido_usr');
+  deleteCookie('nombre_usr','/selmhos/','www.informed.cc')
+  deleteCookie('apellido_usr','/selmhos/','www.informed.cc')
+               
+</script>

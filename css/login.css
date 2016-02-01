@@ -1,0 +1,102 @@
+html{
+  
+height:100%;  
+}
+
+body{
+  overflow:hidden;
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%; 
+ }
+
+div.imagen{
+  
+  float:left;
+ /* margin-left:250px;
+  margin-top:50px;  
+  border-color:#000;
+  border-size:1px;
+  border-style: solid;  */
+}
+
+
+.contenedor{
+  margin:100px 350px;
+  width: 640px; 
+  
+  
+}
+
+.login{
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 25px 20px;
+  width: 320px;  
+  text-align:center;
+  background-color: #d3d3d3;
+}
+
+.login:before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.login h1 {
+  margin: -26px -26px 21px;
+  line-height: 50px;
+  font-size: 18px; 
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px white;
+  background: #585858;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 3px 3px 0 0;
+  background-image: -webkit-linear-gradient(top, whiteffd, #eef2f5);
+  background-image: -moz-linear-gradient(top, whiteffd, #eef2f5);
+  background-image: -o-linear-gradient(top, whiteffd, #eef2f5);
+  background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+  -webkit-box-shadow: 0 1px whitesmoke;
+  box-shadow: 0 1px whitesmoke;
+}
+
+.login p {
+  margin: 15px 0 0;
+}
+ 
+.login p:first-child {
+  margin-top: 0;
+}
+ 
+.login input[type=text], .login input[type=password] {
+  width: 250px;
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+ 
+.login p.submit {
+  text-align: right;
+}
+
+#lock{
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+  
+}
+
+#aceptar {
+   padding:5px 15px;
+   border:1 none;
+   cursor:pointer;
+   -webkit-border-radius: 5px;
+   border-radius:5px;
+}

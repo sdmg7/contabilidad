@@ -1,0 +1,169 @@
+<HTML>
+<head>
+
+<script language="javascript1.2" src="../aw/lib/aw.js"></script>
+<script language="javascript1.2" src="../grid/omnisoftDB.js"></script>
+<script language="javascript1.2" src="../tools/omnisoftTools.js"></script>
+<link href="../styles/omnisoft.css" rel="stylesheet" type="text/css">
+
+</head>
+<BODY>
+    <form name="chartForm" method="post" action="">
+
+<script>
+var SQLTable='usuario';
+var SQLCondition='';
+var Data='';
+var Chart='';
+function generaDatos() {
+ var objDB;
+ var SQLCommand='select ';
+   var SQLTable=opener.formParameters.query.value.split('from')[1];
+       SQLTable=SQLTable.split('group by')[0];
+       SQLTable=SQLTable.split('order by')[0];
+
+ var ejeX=document.chartForm.selectX.value;
+ var ejeY=document.chartForm.selectY.value;
+
+//  SQLCommand=SQLCommand.concat(document.chartForm.selectX.value,', ',document.chartForm.selectY.value,', ',document.chartForm.selectOperation.value,'(',document.chartForm.selectVal.value,') as valor from ',SQLTable,' ','group by ',ejeX,',',ejeY,' order by ',ejeX,',',ejeY,' limit 0,60');
+// prompt('test',SQLCommand);
+// objDB=new omnisoftDB(SQLCommand,"../server/omnisoftSQLData.php","procesarDatos");
+// objDB.executeQuery();
+//}
+
+if (document.chartForm.selectChartType.value=="Cifras")
+{  if (ejeX == ejeY) 
+  { SQLCommand=SQLCommand.concat(document.chartForm.selectX.value,', ',document.chartForm.selectOperation.value,'(',document.chartForm.selectVal.value,') as valor from ',SQLTable,' ',' group by ',ejeX,',',ejeY,' order by ',ejeX);
+ objDB=new omnisoftDB(SQLCommand,"../server/omnisoftSQLDatacifra.php","procesarDatos"); 
+//  prompt('test',SQLCommand);
+}
+else
+  {// alert("X<>Y");
+  SQLCommand=SQLCommand.concat(document.chartForm.selectX.value,', ',document.chartForm.selectY.value,', ',document.chartForm.selectOperation.value,'(',document.chartForm.selectVal.value,') as valor from ',SQLTable,' ',' group by ',ejeX,',',ejeY,' order by ',ejeX,',',ejeY);
+ objDB=new omnisoftDB(SQLCommand,"../server/omnisoftSQLDatacifra.php","procesarDatos"); 
+ // prompt('test',SQLCommand);
+  }
+}
+else
+{ //alert("! CIFRAS"); 
+if (ejeX == ejeY) 
+{SQLCommand=SQLCommand.concat(document.chartForm.selectX.value,' as val1x, ',document.chartForm.selectY.value,', ',document.chartForm.selectOperation.value,'(',document.chartForm.selectVal.value,') as valor from ',SQLTable,' ',' group by ',ejeX,',',ejeY,' order by ',ejeX,',',ejeY);
+ objDB=new omnisoftDB(SQLCommand,"../server/omnisoftSQLData.php","procesarDatos");}
+ else
+{SQLCommand=SQLCommand.concat(document.chartForm.selectX.value,', ',document.chartForm.selectY.value,', ',document.chartForm.selectOperation.value,'(',document.chartForm.selectVal.value,') as valor from ',SQLTable,' ',' group by ',ejeX,',',ejeY,' order by ',ejeX,',',ejeY);
+ objDB=new omnisoftDB(SQLCommand,"../server/omnisoftSQLData.php","procesarDatos");}
+} 
+objDB.executeQuery();
+}
+
+
+
+function procesarDatos(data) {
+Data=data;
+Subtdata=data;
+if (document.chartForm.selectChartType.value=="Cifras")
+   {   document.write("<table border=1 cellspacing=0 cellpadding=2 bordercolor='666633'  bgcolor = '01DFD7' align='center'>");
+       document.write(Subtdata);
+	   document.write("</table>");
+   }
+else    
+   {var sParam='?dummy=1&data='+data;
+    var sURL='';
+ 	sURL=(String(parent.OMNISOFTChartIFrame.location).split('?'))[0];
+ 	Chart='&charttype='+document.chartForm.selectChartType.value;
+ 	sURL+=sParam+Chart;
+
+//prompt('test',sURL);
+    document.getElementById("OMNISOFTChartIFrame").src=sURL;
+    }
+}
+
+function imprimirGrafico() {
+document.OMNISOFTChartIFrame.my_chart.Print();
+}
+</script>
+
+<table height="156"  border="0" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td height="52"><table width="800" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+      <td width="188" height="52"   class="ingeniumtoptitle"></td>
+      <td width="485"  class="maintoptitle fonttitle"><center>
+          REPORTES POR GRUPOS /<br>
+          GRAFICOS COMPARATIVOS
+        </center></td>
+      <td width="127"  class="logotoptitle"></td>
+    </tr>
+   </table>
+   </td>
+  </tr>
+ <tr>
+  <td height="39" valign=middle  class="inputtitle">
+    <table width="1600" height="39" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+                <td width="803" height="39" class="menuborder">Eje X:
+                  <select name="selectX" style=" width:100px;font-family:Tahoma; font-size:10px">
+                </select>                  Eje Y:
+                  <select name="selectY"  style=" width:100px;font-family:Tahoma; font-size:10px">
+                  </select>
+                   Valor:
+                  <select name="selectVal"  style=" width:100px;font-family:Tahoma; font-size:10px">
+                  </select>
+                  <select name="selectOperation" id="selectOperation" style=" width:80px;font-family:Tahoma; font-size:10px">
+                    <option value="sum" selected>Suma</option>
+                    <option value="avg">Promedio</option>
+                    <option value="count" >Frecuencia</option>
+                    <option value="max">Maximo</option>
+                    <option value="min">Minimo</option>
+                  </select>
+                  Tipo Grafico:
+                  <select name="selectChartType" style=" width:60px;font-family:Tahoma; font-size:10px">
+                    <option value="3d Column">Barras</option>
+                    <option value="parallel 3d column">Barras Paralelas</option>
+                    <option value="stacked 3d column">Barras Apiladas</option>
+                    <option value="3d area">Area </option>
+                    <option value="3d Pie">Pastel</option>
+                    <option value="Line">Lineas</option>
+                    <option value="Cifras">Cifras</option>
+                  </select>
+                <a href="#" onClick='generaDatos();'><img src="../../images/graficos.gif" alt="Graficar" width="24" height="24" border="0"></a></td>
+        </tr>
+            </table>
+</TD>
+<tr> <td valign=top  ><iframe id="OMNISOFTChartIFrame" name="OMNISOFTChartIFrame" style="LEFT: 0px; POSITION: relative; TOP: 0px" allowtransparency="true" marginheight="0" marginwidth="0" height="600" scrolling="no" hspace="0" vspace="0" width="1600" src="iframeGrafico.html" frameborder="0">
+</iframe>
+</td>
+
+  </tr>
+<tr>
+<td height="29" class="menuborder"><table width="35%" height="17" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="14%"><a href="#" onClick="imprimirGrafico()"><img src="../../images/impresora.png" alt="Imprimir" width="48" height="48" align="middle">Imprimir</a></td>
+    <td width="21%"><img src="../../images/ayuda2.png" alt="Ayuda" width="48" height="48" align="middle">Ayuda</td>
+    <td width="65%"><a href="#" onClick="window.close()"><img src="../../images/salida.png" alt="Salir" width="48" height="48" align="middle">Salir</a></td>
+  </tr>
+</table></td>
+</tr>
+</table>
+<script>
+    var fields=opener.formParameters.fields.value;
+    var records=fields.split('|');
+    var i=0;
+    var labelOptions='';
+    var valueOptions='';
+    var items='';
+
+    for(i=0; i < records.length-1; i++) {
+             items= records[i].split('~');
+             document.chartForm.selectX.options[i ] = new Option(items[0], items[1]);
+             document.chartForm.selectY.options[i ] = new Option(items[0], items[1]);
+             document.chartForm.selectVal.options[i ] = new Option(items[0], items[1]);
+
+    }
+
+</script>
+    </form>
+
+</BODY>
+</HTML>
+

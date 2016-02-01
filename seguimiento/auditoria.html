@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<TITLE>AUDITORIA</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<style> body, html {margin:0px; padding: 0px; overflow: hidden;} </style>
+<script language="javascript1.2" src="../lib/tools/cookies.js"></script>
+<script language="javascript1.2" src="../lib/aw/lib/aw.js"></script>
+<script language="javascript1.2" src="../lib/tools/disableRightClick.js"></script>
+<script language="javascript1.2" src="../lib/tools/omnisoftTools.js"></script>
+<script language="javascript1.2" src="../lib/grid/omnisoftDB.js"></script>
+<script language="javascript1.2" src="../lib/grid/omnisoftGrid.js"></script>
+<script language="javascript1.2" src="../lib/tools/omnisoftMenu.js"></script>
+<script language="javascript1.2" src="../lib/zpmenu/utils/utils.js"></script>
+<script language="javascript1.2" src="../lib/zpmenu/src/menu.js"></script>
+<script type="text/javascript" src="../lib/jscalendar/calendar.js"></script>
+<script type="text/javascript" src="../lib/jscalendar/lang/calendar-en.js"></script>
+<script type="text/javascript" src="../lib/jscalendar/calendar-setup.js"></script>
+<link href="../lib/aw/styles/xp/aw.css" rel="stylesheet">
+<link href="../lib/grid/styles/omnisoftGrid.css" rel="stylesheet">
+<link href="../lib/autosuggest2/css/autosuggest_inquisitor.css" rel="stylesheet">
+<link href="../lib/zpmenu/themes/images.css" rel="stylesheet">
+<link href="../lib/styles/omnisoft.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="../lib/jscalendar/calendar-blue2.css" title="win2k-cold-1" />
+
+
+<style type="text/css">
+	.aw-quirks * {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+
+	body {font: 12px Tahoma}
+</style>
+
+</HEAD>
+<BODY onLoad="initDisableRight();"  LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 onLoad="MM_preloadImages('../images/bot_insertar_b.gif','../images/bot_editar_b.gif','../images/bot_buscar_b.gif','../images/bot_eliminar_b.gif','../images/bot_correo_b.gif','../images/bot_graficar_b.gif','../images/bot_imprimir_b.gif','../images/bot_ayuda_b.gif','../images/bot_acercad_b.gif','../images/bot_salir_b.gif','../images/bot_home_b.gif','../images/bot_inicio_b.gif','../images/bot_anterior_b.gif','../images/bot_siguiente_b.gif','../images/bot_ultimo_b.gif','../images/bot_xml_b.gif','../images/bot_excel_b.gif')">
+
+<table width="100%" height="541" border="0" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td height="541" valign="top">
+      <div align="center">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>            <td> <div align="right">
+                <table width="100%" height="45" border="0" cellpadding="0" cellspacing="0" class="maintoptitle" >
+                  <tr valign="top">
+                    <td width="222" height="45" valign="bottom" ></td>                    <td width="482"   class="toptitle" > <center>
+						AUDITORIA<br>
+                           </center></td>
+                    <td width="40" valign="bottom" ></td>
+                    <td width="169"  valign="middle" >
+                                        </td>
+                    <td width="128" ></td>
+
+                  </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><img src="../images/ind_01_back.jpg" width="100%" height="7"></td>
+                  </tr>
+                </table>
+              </div></td>
+          </tr>
+           <tr>  <td height="25" class="menuborder" >
+		<ul id="myMenu" class='zpHideOnLoad'>            </ul>
+                <script>
+              OmnisoftPerfilUsuario(moduloSeguimiento);
+            </script>
+</td>
+
+          </tr>
+          <tr>            <td height="412" valign="top" >
+			<div align="center">
+                <table width="100%" height="447" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="1123" height="447" colspan="2" >
+        <script>
+   omniObj=new omnisoftGrid('omniObj','AUDITORIA','serial_aud','select serial_aud, codigo_usr, fecha_aud, hora_aud, accion_aud,instruccion_aud, direccionip_aud,proceso_aud from AUDITORIA au, USUARIO us where au.serial_usr=us.serial_usr','',600,500);
+
+   omniObj.addColumn('Serial','serial_aud', 1,'hidden','','middle','#ffffcc');
+   omniObj.addColumn('Usuario','codigo_usr',20,'readonly','','left','#ffffcc');
+   omniObj.addColumn('Fecha','fecha_aud',20,'readonly','','left','#ffffcc');
+   omniObj.addColumn('Hora','hora_aud',10,'readonly','','left','#ffffcc');
+   omniObj.addColumn('Accion','accion_aud',20,'readonly','','left','#ffffcc');
+   omniObj.addColumn('Instruccion','instruccion_aud',150,'readonly','','left','#ffffcc');
+   omniObj.addColumn('Direccion ip','direccionip_aud',15,'readonly','','left','#ffffcc');
+   omniObj.addColumn('Proceso','proceso_aud',5,'readonly','','left','#ffffcc');
+   
+   omniObj.showGrid('omniObj',17,420,1500,'menu','#FF9900');
+</script></td>
+		</tr>
+		</table>
+		</div>
+		</td>
+	</tr>
+	</table>
+	</div>
+	</td>
+</tr>
+</table>
+<iframe id="iframePDF" frameborder="0" src="../lib/grid/omnisoftIFramePDF.html" name="iframePDF"  width="0" height="0"></iframe>
+</body>
+
+
+</HTML>

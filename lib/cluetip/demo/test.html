@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>clueTip : A jQuery Plugin</title>
+
+  <script src="../jquery-1.2.5.min.js" type="text/javascript"></script>
+  <script src="../jquery.hoverIntent.js" type="text/javascript"></script>
+  <script src="../jquery.cluetip.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../jquery.cluetip.css" type="text/css" />
+
+<body>
+<input type="text" id="nombre" name="nombre" size="20" maxlength="20"  class="string" title="hola" rel="ajax4.htm">
+
+<a class="rounded" href="#" title="This is the title|The first set of contents comes after the first delimiter in the title.|In this case, the delimiter is a pipe">rueba2
+<a href="ajax4.htm" rel="ajax4.htm" title="Acerca de Academium|The first set of contents c" onclick="alert('entro')">Omnisoft</a>
+
+<script>
+  $('a:eq(0)').cluetip({cluetipClass: 'rounded', dropShadow: false, sticky: true, ajaxCache: false, arrows: true,hoverClass: 'highlight',closePosition: 'bottom',closeText: '<img src="styles/cross.png" alt="" />',arrows: true});
+  $('a:eq(1)').cluetip({cluetipClass: 'rounded', dropShadow: false, sticky: true, ajaxCache: false, arrows: true});
+  $('.string').cluetip({cluetipClass: 'rounded', dropShadow: false, sticky: true, ajaxCache: false, arrows: true});
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ficha de Empleados</title>
+
+<style type="text/css">
+body,td,th {
+	font-size: 12px;
+	color: #306;
+	font-family: "lucida grande", helvetica, verdana, arial, sans-serif;
+	text-align: left;
+}
+body {
+	background-color: #FC6;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+	font-weight: bold;
+}
+.titulo {
+	font-size: 36px;
+}
+.titulo {
+	font-size: 24px;
+}
+</style>
+<link rel="stylesheet" type="text/css" media="all" href="../lib/jscalendar/calendar-brown.css" title="win2k-cold-1" />
+  <script type="text/javascript" src="../lib/jscalendar/calendar.js"></script>
+  <script type="text/javascript" src="../lib/jscalendar/lang/calendar-en.js"></script>
+  <script type="text/javascript" src="../lib/jscalendar/calendar-setup.js"></script>
+  <script language= "javascript" src="../lib/aw/lib/aw.js"></script>
+   <script type="text/javascript">
+
+//Funcion de AJAX
+function consultarListaEmpleados(accion) {
+	var ajaxObj;
+	ajaxObj=new AW.HTTP.Request();
+	ajaxObj.setRequestMethod("POST");
+	ajaxObj.setURL("../lib/server/procesarDatos.php");
+	if (accion=='LISTAR')
+		ajaxObj.setParameter("query","select serial_emp,cedula_emp,nombre_emp,apellido_emp,fechanacimiento_emp,email_emp from empleado");
+	else
+		ajaxObj.setParameter("query","select serial_emp,cedula_emp,nombre_emp,apellido_emp,fechanacimiento_emp,email_emp from empleado where cedula_emp='"+document.PaginaDatos.cedula_emp.value+"'");
+	ajaxObj.response=function(datos)  {
+	var data=datos.split('|');
+	if (accion!='LISTAR') {
+		var registro=data[1].split('~');
+		document.PaginaDatos.serial_emp.value=registro[0];
+		document.PaginaDatos.cedula_emp.value=registro[1];
+		document.PaginaDatos.nombre_emp.value=registro[2];
+		document.PaginaDatos.apellido_emp.value=registro[3];
+		document.PaginaDatos.fechanacimiento_emp.value=registro[4];
+		document.PaginaDatos.email_emp.value=registro[5];
+	}
+	alert(datos);
+	}
+	ajaxObj.request();
+}
+
+function procesarEmpleado(accion) {
+var ajaxObj;
+ajaxObj = new AW.HTTP.Request();
+ajaxObj.setRequestMethod("POST");
+ajaxObj.setURL("../lib/server/procesarEmpleado.php");
+ajaxObj.setParameter("serial_emp",document.PaginaDatos.serial_emp.value);
+ajaxObj.setParameter("cedula_emp",document.PaginaDatos.cedula_emp.value);
+ajaxObj.setParameter("nombre_emp",document.PaginaDatos.nombre_emp.value);
+ajaxObj.setParameter("apellido_emp",document.PaginaDatos.apellido_emp.value);
+ajaxObj.setParameter("fechanacimiento_emp",document.PaginaDatos.fechanacimiento_emp.value);
+ajaxObj.setParameter("email_emp",document.PaginaDatos.email_emp.value);
+ajaxObj.setParameter("accion",accion);
+ajaxObj.response = function(datos) {
+	var data;
+	data=datos.split('|');
+	if (data[0]!=''){
+		alert(data[0]);
+		return;
+		}
+	else
+	alert(accion + ' completada satisfactoriamente');	
+	document.PaginaDatos.serial_emp.value=data[1];
+	}	
+	ajaxObj.request();
+} 
+
+
+function cancelar(){
+	window.close();
+}
+
+function grabarEmpleado(){
+	var i;
+	for(i=0;i<document.forms[0].elements.length;i++){
+		alert('El valor de ' + document.forms[0].elements[i].name + ' es: ' + document.forms[0].elements[i].value);
+	}	
+}
+
+</script>
+<link rel="stylesheet" type="text/css" media="screen" href="../lib/styles/gui.css"/>
+</head>
+
+<body>
+<p class="titulo">FICHA DE EMPLEADOS</p>
+<p class="titulo"><br />
+</p>
+<form action="" method="post" name="PaginaDatos" id="PaginaDatos" class="cmxform">
+<input name="serial_emp" id="serial_emp" type="hidden" size="10" class="hidden" value="0"/>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0"  align="center">
+      <tr>
+        <td colspan="2" class="titulo">Datos generales</td>
+      </tr>
+      <tr class="pares">
+        <td >Cédula *</td>
+        <td ><input  name="cedula_emp" id="cedula_emp" type="text" size="10" class="cedula" /></td>
+      </tr>
+      <tr class="impares">
+        <td>Nombres *</td>
+        <td><input name="nombre_emp" id="nombre_emp" type="text" size="50" maxlength="50" minlength="3" class="string" /></td>
+      </tr>
+      <tr  class="pares">
+        <td>Apellidos *</td>
+        <td><input name="apellido_emp" id="apellido_emp" type="text" size="50" maxlength="50" minlength="3" class="string" /></td>
+      </tr>
+      <tr  class="impares">
+        <td width="25%">Fecha de Nacimiento *</td>
+        <td><input name="fechanacimiento_emp" id="fechanacimiento_emp" type="text" size="10" class="date" /></td>
+      </tr>
+      <tr  class="pares">
+        <td>Correo electrónico *</td>
+        <td><input name="email_emp" id="email_emp" type="text" size="64" maxlength="64" class="email" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center"><input name="btnRecuperar" type="button" id="btnRecuperar" value="Recuperar"  onclick="consultarListaEmpleados('RECUPERAR')" />
+          <input name="btnRegistrar" type="button" id="btnRegistrar" value="Registrar"  onclick="procesarEmpleado('INSERTAR')" />
+		<input name="btnActualizar" type="button" id="btnActualizar" value="Actualizar"  onclick="procesarEmpleado('ACTUALIZAR')" />
+		<input name="btnEliminar" type="button" id="btnEliminar" value="Eliminar"  onclick="procesarEmpleado('ELIMINAR')" />
+          <input name="btnListarEmpleado" type="button" value="Listar Empleados" onClick="consultarListaEmpleados('LISTAR')" />
+          <input hspace="5" name="btnCancelar" type="button" onclick="cancelar()" value="Cancelar" /></td>
+      </tr>  
+  </table>
+</form>
+<p>&nbsp;</p>
+
+</body>
+</html>

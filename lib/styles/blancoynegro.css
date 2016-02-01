@@ -1,0 +1,258 @@
+caption {
+	padding: 0 .4em .4em;
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #fff;
+	background: transparent;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+    }
+
+
+table {
+        border:0px solid #FFFFFF
+}
+
+table.maintoptitle {
+ background:url(../../images/page_inter_02.gif);
+}
+
+td.maintoptitle {
+ background:url(../../images/page_inter_02.gif);
+}
+
+td.tabs {
+ background:url(../../images/vineta.jpg);
+ width:150px; height:21px;
+   	font-family: Arial, Helvetica, sans-serif;
+	color: red;
+	font-weight: bold;
+	font-size: 12px;
+
+
+}
+
+td.logotoptitle {
+ background:url(../../images/page_inter_04.gif);
+}
+
+td.toptitle {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	text-decoration: none;
+	vertical-align:middle;
+}
+
+td.ingeniumtoptitle {
+ background:url(../../images/page_inter_01.gif);
+}
+
+
+td.inputtitle {
+  	font-family: Arial, Helvetica, sans-serif;
+	color:black;
+	font-weight: bold;
+	font-size: 12px;
+	text-decoration: none;
+
+
+}
+
+
+td.formtitle {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	font-weight: bold;
+	font-size: 10px;
+	text-decoration: none;
+	background-color:#36424b;
+        border-right: 1px solid #000000;
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+
+
+}
+
+td.formprinttitle {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	text-decoration: none;
+	background-color:red
+
+
+}
+
+
+td.odd {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: navy;
+	font-weight: bold;
+	font-size: 10px;
+	text-decoration: none;
+	background: url(../../images/titulos.jpg);
+
+
+}
+
+
+td.pair {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+	font-weight: bold;
+	font-size: 10px;
+	text-decoration: none;
+	background-color:ffff80;
+}
+
+td.total {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	text-decoration: none;
+	background-color:red;
+}
+
+td {
+
+
+}
+
+input  {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+    text-transform: uppercase;
+    position:relative;
+    background-color:#ffffd1;
+    border:3px;
+}
+
+textarea  {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+    text-transform: uppercase;
+    position:relative;
+    background-color:#ffffd1;border:3px;
+}
+
+select  {
+//  background:url(../../images/bgcells.jpg);
+  background-color:#ffffd1;
+ border:3px;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 0.9em;
+
+
+}
+
+
+
+table.bottomform {
+	background-color: #5e97c6;
+
+}
+
+
+TD.menuborder {
+	background: url(../../images/menuborder.jpg);
+}
+
+TD.menuborder1 {
+	background: url(../../images/bg_blue.jpg);
+	border-width:0px;	
+}
+
+
+img {
+	border: none;
+}
+.fonttitle {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+table.formtable {
+	background: url(../../images/titulos.jpg);
+
+}
+
+A { text-decoration: none;
+
+ }
+
+
+ a:link {
+	color: 	black;
+	text-decoration: none
+}
+
+a:visited {
+	color: navy;
+	text-decoration: none
+}
+
+
+a:hover {
+	color:gray;
+	text-decoration: none
+}
+
+.required {
+    background-color:#ffffd0;
+}
+
+.hide { position:absolute; visibility:hidden; }
+.show { position:absolute; visibility:visible; }
+
+.titulosPag{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: black;
+	text-decoration:none;
+}
+
+
+TD.normal {
+  	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+	font-weight: bold;
+	font-size: 10px;
+	text-decoration: none;
+	background-color:#9fc2ea;
+
+
+}
+
+.totales {
+	font-size: 24px;
+	color: #FF0000;
+font-weight: bold;
+}
+
+.barrabotones {
+	font-size: 12px;
+	color: #FFFFFF;
+font-weight: bold;
+}
+tituloReporte {
+	color: #000066;
+	font-size: 24px;
+}

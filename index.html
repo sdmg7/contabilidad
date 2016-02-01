@@ -1,0 +1,118 @@
+<html>
+  <head>
+      <title>TESORERIA</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <script language="javascript1.2" src="lib/tools/browser.js"></script>
+      <link href="lib/tools/omnisoftValidar.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" type="text/css" href="css/login.css">
+      <script language='javascript' src="lib/tools/omnisoftValidar.js"></script>
+      <script language="javascript" src= "lib/tools/cookies.js" ></script>
+      <script language="javascript" src="lib/aw/lib/aw.js"></script>
+      <script language="javascript" src="lib/grid/omnisoftDB.js"></script>
+      <script language="javascript" src= "config/config.js" ></script>
+  <script>
+
+  function entsub() {
+      if (window.event && window.event.keyCode == 13) {
+          omnisoftVerificarUsuario();
+      }
+     else
+    return true;
+   }
+
+   function generaClave(digito) {
+   document.flogin.password.value=document.flogin.password.value.concat(digito);
+   }
+
+   function borrarClave(digito) {
+   document.flogin.password.value='';
+   }
+</script>
+<script>
+
+var intentos=0;
+
+   function omnisoftProcesarDatos(data) {
+      var arreglo=data.split('|');
+      if (arreglo[1].length<=0)
+          alert("Error: Usuario NO Registrado!");
+      else {
+          var usuario=arreglo[1].split('~');
+          setCookie('serial_usr',usuario[0]);
+          setCookie('nombre_usr',usuario[1]);
+          setCookie('apellido_usr',usuario[2]);
+          setCookie('nombre_pfl',usuario[4]);
+          setCookie('serial_pfl',usuario[5]);
+          setCookie('serial_emp',usuario[6]);
+          window.location.href=('./seguimiento/caja_banco.html?dummy=0&serial_prc=20');
+	}
+      }
+
+    function omnisoftValidarUsuario(){
+        if (document.flogin.usuario.value=='') {
+            alert('Por favor ingrese su usuario ');
+	    document.flogin.usuario.focus();
+	    return false;
+	}
+
+	if (document.flogin.password.value=='') {
+	    alert('Por favor ingrese su clave ');
+	    document.flogin.password.focus();
+	    return false;
+	 }
+	 
+	 if (document.flogin.empresa.value=='') {
+	    alert('Por favor ingrese su empresa ');
+	    document.flogin.empresa.focus();
+	    return false;
+	 }
+    return true;
+    }
+
+
+    function omnisoftVerificarUsuario() {
+        var usuario = document.flogin.usuario.value;
+	var password = document.flogin.password.value;
+	var empresa = document.flogin.empresa.value;
+	
+	if (++intentos>3) {
+	    alert('Usted ha alcanzado el número maximo de intentos');
+	    window.close();
+	    return false;
+	}
+
+        if (omnisoftValidarUsuario()) {
+            setCookie('usuario', usuario);
+            objDB=new omnisoftDB("select serial_usr,nombre_usr,apellido_usr,estado_usr,nombre_pfl,PERFIL.serial_pfl,EMPRESA.serial_emp from PERFIL,USUARIO,EMPRESA where PERFIL.serial_pfl=USUARIO.serial_pfl and USUARIO.serial_emp=EMPRESA.serial_emp  and estado_usr='ACTIVO' and nombre_emp='"+empresa+"' and codigo_usr='"+usuario+"' and password_usr=md5('"+password+"')");
+	    setTimeout('objDB.executeQuery()',0);
+        }
+        else alert('Advertencia: Usuario o clave NO registrados');
+
+    }
+</script>
+  
+  </head>
+
+  <body>
+  
+  <div class='imagen'><!--<img src="/Acme/img/logoAcme.jpg"  id="logo">--></div>
+  <div class="contenedor">
+      <div class="login">
+         
+          <h1>INICIO DE SESI&Oacute;N</h1>
+          <form name="flogin" onKeyUp="highlight(event)" onClick="highlight(event)" method="post" autocomplete='off'> 
+          <img src="/Contabilidad/images/Lock.png"  id="lock">
+          <p><input type="text" id="usuario" name="usuario" tabindex="1" maxlength="18" placeholder="USUARIO"/></p>
+          <p><input type="password" id="password" name="password" tabindex="2" onKeyPress="entsub()" placeholder="CONTRASE&Ntilde;A"/></p>
+          <p><input type="text" id="empresa" name="empresa" tabindex="3" maxlength="18" placeholder="EMPRESA"/></p>
+          <p><input type="button" name="aceptar" id="aceptar" value="ACEPTAR" onClick="omnisoftVerificarUsuario()" /></p>
+          </form>
+      
+   </div>
+   </div>
+
+</body>
+</html>
+
+
+
